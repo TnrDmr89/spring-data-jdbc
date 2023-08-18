@@ -1,6 +1,9 @@
 package com.example.demo.springdatajdbc.controller;
 
 
+import com.example.demo.springdatajdbc.model.Actor;
+import com.example.demo.springdatajdbc.model.Film;
+import com.example.demo.springdatajdbc.repository.ActorRepository;
 import com.example.demo.springdatajdbc.service.ActorService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ public class ActorController {
     @Autowired
     private ActorService actorService;
 
+    @Autowired
+    private ActorRepository actorRepository;
     /*
     {
     "firstName":"Ed",
@@ -49,5 +54,11 @@ public class ActorController {
     @RequestMapping(path = "/actor/filmPlayed",method = RequestMethod.GET)
     public List<String> filmPlayed(@RequestParam("name") String name){
         return this.actorService.films(name);
+    }
+
+
+    @RequestMapping(path = "/actor/findById/{id}",method = RequestMethod.GET)
+    public Actor findById(@PathVariable("id") Integer actorId){
+        return this.actorRepository.findById(actorId).orElse(null);
     }
 }

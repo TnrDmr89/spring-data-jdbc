@@ -1,5 +1,6 @@
 package com.example.demo.springdatajdbc.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class Actor {
     public Actor() {
     }
 
+    @JsonIgnore
     public Integer getId() {
         return id;
     }

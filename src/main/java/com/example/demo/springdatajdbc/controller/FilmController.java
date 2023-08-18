@@ -1,5 +1,6 @@
 package com.example.demo.springdatajdbc.controller;
 
+import com.example.demo.springdatajdbc.model.Film;
 import com.example.demo.springdatajdbc.repository.FilmRepository;
 import com.example.demo.springdatajdbc.service.FilmService;
 import org.json.JSONObject;
@@ -50,6 +51,11 @@ public class FilmController {
     @PutMapping("updateFilmLanguage")
     public void updateFilmLanguage(@RequestParam("title") String title, @RequestParam("language") String language){
         this.filmService.updateFilmLanguage(title,language);
+    }
+
+    @GetMapping("/findFilm/{id}")
+    public Film finFilmById(@PathVariable Integer id){
+        return this.filmRepository.findById(id).orElse(null);
     }
 
 }
